@@ -1,0 +1,7 @@
+# ninja log v5
+1	7	1785966769756297088	generated/volt_guard.pb.cc	1dd5654c8417dabe
+1	7	1785966769756297088	generated/volt_guard.grpc.pb.cc	1dd5654c8417dabe
+1	7	1785966769756297088	/home/sandesh/jetson/build/volt-guard-server/build/generated/volt_guard.pb.cc	1dd5654c8417dabe
+1	7	1785966769756297088	/home/sandesh/jetson/build/volt-guard-server/build/generated/volt_guard.grpc.pb.cc	1dd5654c8417dabe
+7	518	1785966770266008796	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.pb.cc.o	44818667100b609a
+8	1390	1785966771135267561	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.grpc.pb.cc.o	8f5c3756c81c45a

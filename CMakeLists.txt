@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.20)
+project(volt-guard-server VERSION 0.1.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED)
+find_package(Threads REQUIRED)
+set(PROTO_SRC ${CMAKE_CURRENT_SOURCE_DIR}/proto/volt_guard.proto)
+set(PROTO_GEN_DIR ${CMAKE_CURRENT_BINARY_DIR}/generated)
+file(MAKE_DIRECTORY ${PROTO_GEN_DIR})
+add_custom_command(OUTPUT ${PROTO_GEN_DIR}/volt_guard.pb.cc ${PROTO_GEN_DIR}/volt_guard.grpc.pb.cc
+    COMMAND protoc --proto_path ${CMAKE_CURRENT_SOURCE_DIR}/proto --cpp_out ${PROTO_GEN_DIR} --grpc_out ${PROTO_GEN_DIR}
+    --plugin=protoc-gen-grpc=$<TARGET_FILE:gRPC::grpc_cpp_plugin> ${PROTO_SRC} DEPENDS ${PROTO_SRC})
+add_library(volt_guard_proto OBJECT ${PROTO_GEN_DIR}/volt_guard.pb.cc ${PROTO_GEN_DIR}/volt_guard.grpc.pb.cc)
+target_include_directories(volt_guard_proto PUBLIC ${PROTO_GEN_DIR})
+target_link_libraries(volt_guard_proto PUBLIC protobuf::libprotobuf gRPC::grpc++)
+add_executable(volt-guard-server src/main.cpp)
+target_include_directories(volt-guard-server PRIVATE src ${PROTO_GEN_DIR})
+target_link_libraries(volt-guard-server PRIVATE volt_guard_proto protobuf::libprotobuf gRPC::grpc++ Threads::Threads)
