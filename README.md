@@ -9,6 +9,40 @@ The Volt Guard Server is a C++17 gRPC service that exposes the Jetson AGX Orin's
 - for
 - power
 - management
+- Set
+- power
+- mode
+- RPC
+- Get
+- power
+- mode
+- RPC
+- Get
+- sensor
+- data
+- RPC
+- (temp,
+- voltage,
+- current,
+- power)
+- Health
+- check
+- endpoint
+- C++17
+- with
+- strict
+- compiler
+- warnings
+- CMake
+- +
+- Ninja
+- build
+- system
+- Catch2
+- unit
+- tests
+- MIT
+- licensed
 
 ## Quick Start
 
@@ -21,16 +55,6 @@ The Volt Guard Server is a C++17 gRPC service that exposes the Jetson AGX Orin's
 make all      # Build all targets
 make test     # Run tests
 make clean    # Clean build artifacts
-```
-
-## Architecture
-
-```
-Driver (kernel module) ──► Server (gRPC) ──► GUI (PySide6)
-     │                        │                    │
-     ▼                        ▼                    ▼
-  Hardware              C++ Service           Desktop App
-  Access                Layer                 (macOS/Linux/Win)
 ```
 
 ## Repository Structure
@@ -48,10 +72,10 @@ Driver (kernel module) ──► Server (gRPC) ──► GUI (PySide6)
 ## Project Status
 
 **Version:** 0.1.0 — Initial release
-**License:** Set power mode RPC
+**License:** MIT
 **Audit Score:** 90/100
 
-## 🌐 Ecosystem
+## Ecosystem
 
 This project is part of the [Jetson AGX Orin Capability Showcase](https://github.com/soccentric-jetson-oss/soccentric-jetson-oss) — five open-source projects demonstrating full exploitation of NVIDIA's flagship edge AI platform.
 
@@ -61,4 +85,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. All contributions welcome
 
 ## License
 
-Set power mode RPC. See [LICENSE](LICENSE) for details.
+MIT. See [LICENSE](LICENSE) for details.
