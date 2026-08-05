@@ -1,3 +1,7 @@
+#include <csignal>
+#include <atomic>
+static std::atomic<bool> g_running{true};
+static void signal_handler(int) { g_running.store(false); }
 #include <iostream>
 #include <grpcpp/grpcpp.h>
 #include <volt_guard.grpc.pb.h>
