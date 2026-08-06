@@ -1,31 +1,39 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SoC Centric LLC
+//
+// main.cpp - Entry point for Volt Guard gRPC server
+//
+/// @brief Thin entry point: parses CLI args, starts server, waits for signal.
+
+#include "server/server.hpp"
+#include <iostream>
 #include <csignal>
 #include <atomic>
+#include <thread>
+
 static std::atomic<bool> g_running{true};
 static void signal_handler(int) { g_running.store(false); }
-#include <iostream>
-#include <grpcpp/grpcpp.h>
-#include <volt_guard.grpc.pb.h>
 
-class VGImpl final : public voltguard::VoltGuard::Service {
-    grpc::Status SetPowerMode(grpc::ServerContext*, const voltguard::PowerMode* req, voltguard::ModeResponse* resp) override {
-        std::cout << "Set mode " << req->mode() << " " << req->power_mw() << "mW\n";
-        resp->set_success(true); return grpc::Status::OK;
-    }
-    grpc::Status GetPowerMode(grpc::ServerContext*, const voltguard::Empty*, voltguard::PowerMode* resp) override {
-        resp->set_mode(1); resp->set_power_mw(15000); return grpc::Status::OK;
-    }
-    grpc::Status GetSensors(grpc::ServerContext*, const voltguard::Empty*, voltguard::SensorData* resp) override {
-        resp->set_temp_celsius(45); resp->set_voltage_mv(12000); resp->set_current_ma(800); resp->set_power_mw(9600);
-        return grpc::Status::OK;
-    }
-    grpc::Status HealthCheck(grpc::ServerContext*, const voltguard::Empty*, voltguard::HealthResponse* resp) override {
-        resp->set_status("SERVING"); resp->set_version("0.1.0"); return grpc::Status::OK;
-    }
-};
+int main(int argc, char** argv) {
+    std::signal(SIGINT, signal_handler);
+    std::signal(SIGTERM, signal_handler);
 
-int main() {
-    VGImpl svc; grpc::ServerBuilder b;
-    b.AddListeningPort("0.0.0.0:50055", grpc::InsecureServerCredentials());
-    b.RegisterService(&svc); auto s = b.BuildAndStart();
-    std::cout << "Volt Guard on :50055\n"; s->Wait();
+    std::string addr = "127.0.0.1:50055";
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "--address" && i + 1 < argc) addr = argv[++i];
+    }
+
+    voltguard::Server server(addr);
+    auto status = server.Start();
+    if (!status.ok()) {
+        std::cerr << "Failed: " << status.error_message() << "\n";
+        return 1;
+    }
+
+    while (g_running.load())
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    server.Shutdown();
+    return 0;
 }
