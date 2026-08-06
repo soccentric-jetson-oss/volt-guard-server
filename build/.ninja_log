@@ -3,7 +3,14 @@
 1	7	1785966769756297088	generated/volt_guard.grpc.pb.cc	1dd5654c8417dabe
 1	7	1785966769756297088	/home/sandesh/jetson/build/volt-guard-server/build/generated/volt_guard.pb.cc	1dd5654c8417dabe
 1	7	1785966769756297088	/home/sandesh/jetson/build/volt-guard-server/build/generated/volt_guard.grpc.pb.cc	1dd5654c8417dabe
+2	1046	1785966799692565016	CMakeFiles/volt-guard-server.dir/src/main.cpp.o	d6dbda8631ef673f
 7	518	1785966770266008796	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.pb.cc.o	44818667100b609a
 8	1390	1785966771135267561	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.grpc.pb.cc.o	8f5c3756c81c45a
-2	1046	1785966799692565016	CMakeFiles/volt-guard-server.dir/src/main.cpp.o	d6dbda8631ef673f
 1046	1141	1785966799786565857	volt-guard-server	bf1848d1afd41f83
+1	565	1785980932547655662	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.pb.cc.o	add3246588342219
+2	1022	1785980933004002415	CMakeFiles/volt-guard-core.dir/src/service/volt_guard_service.cpp.o	98f67d0f7471a1d3
+565	1141	1785980933123003573	CMakeFiles/volt-guard-server.dir/src/main.cpp.o	c2ea56bfe1b47e32
+2	1158	1785980933140003738	CMakeFiles/volt-guard-core.dir/src/server/server.cpp.o	ddbf3b5574e59174
+1	1515	1785980933495499769	CMakeFiles/volt_guard_proto.dir/generated/volt_guard.grpc.pb.cc.o	3240fd7fa0875775
+1515	1541	1785980933523268125	libvolt-guard-core.a	6cb21d9cd6be70af
+1541	1634	1785980933616008369	volt-guard-server	627b0e44f34d26eb

@@ -1,4 +1,9 @@
 /home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/volt_guard_proto.dir
+/home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/volt-guard-core.dir
 /home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/volt-guard-server.dir
+/home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/format.dir
+/home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/format-check.dir
+/home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/lint.dir
+/home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/doc.dir
 /home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/edit_cache.dir
 /home/sandesh/jetson/build/volt-guard-server/build/CMakeFiles/rebuild_cache.dir
